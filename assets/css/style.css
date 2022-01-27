@@ -1,0 +1,12 @@
+:root {
+    --purple: #781EDB;
+    --blue: #2F7FFA;
+    --white: #FFFFFF;
+}
+
+header {
+    background-image: linear-gradient(to bottom right, var(--blue), var(--purple));
+    color: var(--white);
+    text-align: center;
+    padding: 2%;
+}
