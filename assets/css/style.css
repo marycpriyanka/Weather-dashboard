@@ -10,3 +10,30 @@ header {
     text-align: center;
     padding: 2%;
 }
+
+#searchBtn, button {
+    background-color: var(--blue);
+    color: var(--white)
+}
+
+#currentWeatherContainer {
+    border: 1px var(--blue);
+    border-style: none;
+}
+
+#futureWeatherContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    color: var(--white);
+}
+
+#citiesContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+}
+
+#forecastHeader {
+    display: none;
+}

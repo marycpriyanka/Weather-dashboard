@@ -17,15 +17,18 @@
         <div class="row d-flex">
             <section class="col-3">
                 <section class="row m-4 ">
-                    <form class="mb-3 col-auto card">
+                    <form id="userSearchForm" class="mb-3 card">
                         <label for="search-city" class="form-label fs-2">Search for a city:</label>
                         <input type="text" class="form-control" id="search-city" name="search-city" autofocus="true" placeholder="Seattle">
-                        <button type="submit" class="btn btn-primary my-3">Search</button>
+                        <button id="searchBtn" type="submit" class="btn my-3">Search</button>
                     </form>
                 </section>
+                <section id="citiesContainer" class="m-4"></section>
             </section>
             <section class="col-9">
-
+                <section id="currentWeatherContainer" class="m-4"></section>
+                <h2 id="forecastHeader" class="ms-4">5-Day Forecast</h2>
+                <section id="futureWeatherContainer" class="m-4"></section>
             </section>
         </div>
     </main>
@@ -33,4 +36,6 @@
 
     </footer>
 </body>
+<script src="assets/js/script.js"></script>
 </html>
+
