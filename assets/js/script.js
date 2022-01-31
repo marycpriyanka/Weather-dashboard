@@ -62,7 +62,7 @@ function getWeatherDetails() {
     currentWeatherContainer.innerHTML = "";
     futureWeatherContainer.innerHTML = "";
 
-    getCoordinatesOfCity();    
+    getCoordinatesOfCity();
 }
 
 // Gets the latitude and longitude of a city
@@ -112,8 +112,6 @@ function getCityWeather(locationArray) {
         .catch(function (error) {
             currentWeatherContainer.textContent = "Unable to connect to server: " + error;
         })
-
-
 }
 
 // Adds the city to search history
@@ -160,7 +158,11 @@ function displayCurrentWeatherForCity(data) {
     windP.textContent = "Wind speed: " + windSpeed;
 
     let uvP = document.createElement("p");
-    uvP.textContent = "UV Index: " + uvIndex;
+    uvP.textContent = "UV Index: ";
+    let uvValueElement = document.createElement("span");
+    uvValueElement.textContent = uvIndex;
+    uvValueElement.style.backgroundColor = getUVIndexColor(uvIndex);
+    uvP.appendChild(uvValueElement);
 
     // Adds the new elements to the current weather container
     currentWeatherContainer.appendChild(title);
@@ -168,6 +170,34 @@ function displayCurrentWeatherForCity(data) {
     currentWeatherContainer.appendChild(humidityP);
     currentWeatherContainer.appendChild(windP);
     currentWeatherContainer.appendChild(uvP);
+}
+
+// Gets a color based on UV index indicating whether the conditions are favorable, moderate or severe
+function getUVIndexColor(value) {
+    let color;
+    switch (true) {
+        case value < 2:
+            color = getComputedStyle(document.body).getPropertyValue("--green");
+            break;
+
+        case value >= 3 && value < 6:
+            color = getComputedStyle(document.body).getPropertyValue("--yellow");
+            break;
+
+        case value >= 6 && value < 8:
+            color = getComputedStyle(document.body).getPropertyValue("--orange");
+            break;
+
+        case value >= 8 && value < 11:
+            color = getComputedStyle(document.body).getPropertyValue("--red");
+            break;
+
+        case value >= 11:
+            color = getComputedStyle(document.body).getPropertyValue("--purple");
+            break;
+    }
+
+    return color;
 }
 
 // Displays 5 day weather forecast for the city
@@ -179,7 +209,8 @@ function displayWeatherForecast(data) {
     // Iterates through the first 5 days of data and displays the data
     for (let i = 0; i < noOfDays; i++) {
         let divElement = document.createElement("div");
-        divElement.style.backgroundColor = "#781EDB";
+        
+        divElement.style.backgroundColor = getComputedStyle(document.body).getPropertyValue("--purple");
         divElement.style.padding = "1%";
 
         let iconElement = document.createElement("p");
