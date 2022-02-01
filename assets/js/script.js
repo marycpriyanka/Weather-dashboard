@@ -161,7 +161,7 @@ function displayCurrentWeatherForCity(data, timezoneOffset) {
     title.textContent = city + " (" + date + ")";
 
     let iconElement = document.createElement("span");
-    iconElement.innerHTML = `<img src="http://openweathermap.org/img/wn/${weatherIcon}@2x.png">`;
+    iconElement.innerHTML = `<img src="https://openweathermap.org/img/wn/${weatherIcon}@2x.png">`;
     title.appendChild(iconElement);
 
     let tempP = document.createElement("p");
