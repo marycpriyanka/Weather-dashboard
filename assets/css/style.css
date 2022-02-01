@@ -23,6 +23,7 @@ header {
 #currentWeatherContainer {
     border: 1px var(--blue);
     border-style: none;
+    padding: 0 1%;
 }
 
 #futureWeatherContainer {

@@ -21,6 +21,7 @@ userSearchForm.addEventListener("submit", formSubmitHandler);
 // Event handler for button click in search history
 citiesListContainer.addEventListener("click", cityButtonClickHandler);
 
+// Calls this function when page loads
 displaySearchHistory();
 
 // Displays the names of cities in user search history
@@ -61,6 +62,10 @@ function getWeatherDetails() {
     // Clears the current and forecast weather container
     currentWeatherContainer.innerHTML = "";
     futureWeatherContainer.innerHTML = "";
+    // Clears the border
+    currentWeatherContainer.style.borderStyle = "none";
+    // Hides the 5 day forecast header
+    forecastHeader.style.display = "none";
 
     getCoordinatesOfCity();
 }
@@ -106,8 +111,8 @@ function getCityWeather(locationArray) {
         })
         .then(function (data) {
             // console.log(data);
-            displayCurrentWeatherForCity(data.current);
-            displayWeatherForecast(data.daily);
+            displayCurrentWeatherForCity(data.current, data.timezone_offset);
+            displayWeatherForecast(data.daily, data.timezone_offset);
         })
         .catch(function (error) {
             currentWeatherContainer.textContent = "Unable to connect to server: " + error;
@@ -131,10 +136,15 @@ function addCityToSearchHistory() {
 }
 
 // Displays the current weather for city
-function displayCurrentWeatherForCity(data) {
-    console.log(data);
+function displayCurrentWeatherForCity(data, timezoneOffset) {
+    // console.log(timezoneOffset);
+    // Gets the date
+    let unixTime = data.dt + timezoneOffset;
+    let time = new Date(unixTime * 1000);
+    let date = (time.getUTCMonth() + 1) + "/" + time.getUTCDate() + "/" + time.getUTCFullYear();
+
     // Gets the required data
-    let temperature = data.temp + " deg F";
+    let temperature = data.temp + " °F";
     let humidity = data.humidity + " %";
     let windSpeed = data.wind_speed + " MPH";
     let weatherIcon = data.weather[0].icon;
@@ -142,10 +152,10 @@ function displayCurrentWeatherForCity(data) {
 
     // Creates DOM elements to dispay the data
     let title = document.createElement("h2");
-    title.textContent = city;
+    title.textContent = city + " (" + date + ")";
 
     let iconElement = document.createElement("span");
-    iconElement.innerHTML = "&#" + weatherIcon;
+    iconElement.innerHTML = `<img src="http://openweathermap.org/img/wn/${weatherIcon}@2x.png">`;
     title.appendChild(iconElement);
 
     let tempP = document.createElement("p");
@@ -170,6 +180,8 @@ function displayCurrentWeatherForCity(data) {
     currentWeatherContainer.appendChild(humidityP);
     currentWeatherContainer.appendChild(windP);
     currentWeatherContainer.appendChild(uvP);
+
+    currentWeatherContainer.style.borderStyle = "solid";
 }
 
 // Gets a color based on UV index indicating whether the conditions are favorable, moderate or severe
@@ -201,23 +213,31 @@ function getUVIndexColor(value) {
 }
 
 // Displays 5 day weather forecast for the city
-function displayWeatherForecast(data) {
+function displayWeatherForecast(data, timezoneOffset) {
     // console.log(data);
     // Displays the header of 5 day forecast
     forecastHeader.style.display = "block";
 
     // Iterates through the first 5 days of data and displays the data
-    for (let i = 0; i < noOfDays; i++) {
+    for (let i = 1; i <= noOfDays; i++) {
         let divElement = document.createElement("div");
-        
-        divElement.style.backgroundColor = getComputedStyle(document.body).getPropertyValue("--purple");
-        divElement.style.padding = "1%";
 
-        let iconElement = document.createElement("p");
-        iconElement.innerHTML = "&#" + data[i].weather[0].icon;
+        divElement.style.backgroundColor = getComputedStyle(document.body).getPropertyValue("--purple");
+        divElement.style.padding = "0 1%";
+
+        // Gets the dates
+        let unixTime = data[i].dt + timezoneOffset;
+        let time = new Date(unixTime * 1000);
+        let date = (time.getUTCMonth() + 1) + "/" + time.getUTCDate() + "/" + time.getUTCFullYear();
+
+        let title = document.createElement("h3");
+        title.textContent = date;
+
+        let iconElement = document.createElement("div");
+        iconElement.innerHTML = `<img src="http://openweathermap.org/img/wn/${data[i].weather[0].icon}@2x.png">`
 
         let tempP = document.createElement("p");
-        tempP.textContent = "Temp: " + data[i].temp.day + " deg F";
+        tempP.textContent = "Temp: " + data[i].temp.day + " °F";
 
         let humidityP = document.createElement("p");
         humidityP.textContent = "Humidity: " + data[i].humidity + " %";
@@ -225,10 +245,12 @@ function displayWeatherForecast(data) {
         let windP = document.createElement("p");
         windP.textContent = "Wind speed: " + data[i].wind_speed + " MPH";
 
+        divElement.appendChild(title);
         divElement.appendChild(iconElement);
         divElement.appendChild(tempP);
         divElement.appendChild(humidityP);
         divElement.appendChild(windP);
+        divElement.style.marginBottom = "1%";
 
         futureWeatherContainer.appendChild(divElement);
     }
