@@ -125,6 +125,10 @@ function addCityToSearchHistory() {
     if (citySearchList.indexOf(city) === -1) {
         // Adds to local storage
         citySearchList.push(city);
+        // Only recently searched 10 cities are stored in local storage
+        if (citySearchList.length > 10) {
+            citySearchList.shift();
+        }
         localStorage.setItem("searchHistory", JSON.stringify(citySearchList));
 
         // Adds a button to city search list.
