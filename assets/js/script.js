@@ -13,6 +13,8 @@ let APIKey = "b95fc16b0f47f0fa5ddbb3875b0c4181";
 let city;
 // Number of days for which weather forcast is displayed
 let noOfDays = 5;
+// Maximum number of cities stored as search history in local storage
+let maxSearchHistory = 10;
 // The list containing all the cities searched. 
 let citySearchList = JSON.parse(localStorage.getItem("searchHistory")) || [];
 
@@ -73,7 +75,7 @@ function getWeatherDetails() {
 // Gets the latitude and longitude of a city
 function getCoordinatesOfCity() {
     // Open Weather Map's Geocoding API to get the coordinates of a city
-    let queryURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=" + APIKey;
+    let queryURL = "https://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=" + APIKey;
     fetch(queryURL)
         .then(function (response) {
             if (response.ok) {
@@ -126,7 +128,7 @@ function addCityToSearchHistory() {
         // Adds to local storage
         citySearchList.push(city);
         // Only recently searched 10 cities are stored in local storage
-        if (citySearchList.length > 10) {
+        if (citySearchList.length > maxSearchHistory) {
             citySearchList.shift();
         }
         localStorage.setItem("searchHistory", JSON.stringify(citySearchList));
