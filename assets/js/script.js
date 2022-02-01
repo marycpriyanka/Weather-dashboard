@@ -240,7 +240,7 @@ function displayWeatherForecast(data, timezoneOffset) {
         title.textContent = date;
 
         let iconElement = document.createElement("div");
-        iconElement.innerHTML = `<img src="http://openweathermap.org/img/wn/${data[i].weather[0].icon}@2x.png">`
+        iconElement.innerHTML = `<img src="https://openweathermap.org/img/wn/${data[i].weather[0].icon}@2x.png">`
 
         let tempP = document.createElement("p");
         tempP.textContent = "Temp: " + data[i].temp.day + " °F";
