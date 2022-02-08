@@ -13,6 +13,12 @@ Weather dashboard retrieves weather data for cities. Travelers could use this we
 ![screenshot1](https://github.com/marycpriyanka/Weather-dashboard/blob/main/assets/images/screenshots/screenshot1.JPG)
 ![screenshot2](https://github.com/marycpriyanka/Weather-dashboard/blob/main/assets/images/screenshots/screenshot2.JPG)
 
+## Technologies used
+HTML, CSS, JavaScript, Bootstrap, Open Weather One Call API
+
 ## Deployed link
 https://marycpriyanka.github.io/Weather-dashboard/
+
+### Contact
+marycpriyanka@gmail.com
 
