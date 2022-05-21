@@ -1,5 +1,19 @@
 # Weather-dashboard
+![badge](https://img.shields.io/badge/MIT-License-blue.svg)
+
+## Description
+
 Weather dashboard retrieves weather data for cities. Travelers could use this website to see the weather outlook for multiple cities to plan trips accordingly.
+
+## Table of Contents 
+
+- [Features](#features)
+- [Technologies used](#technologies-used)
+- [License](#license)
+- [Deployed link](#deployed-link)
+- [License](#license)
+- [How to Contribute](#how-to-contribute)
+- [Questions](#questions)
 
 ## Features
 - Weather dashboard contains a form input for users to search for a city.
@@ -19,6 +33,19 @@ HTML, CSS, JavaScript, Bootstrap, Open Weather One Call API
 ## Deployed link
 https://marycpriyanka.github.io/Weather-dashboard/
 
-### Contact
-marycpriyanka@gmail.com
+## License
+
+Weather dashboard is available under the MIT License.
+
+## How to Contribute
+
+Contributions and ideas are welcome. Before submitting an issue, please take a moment to look over the contributing guidelines in https://www.contributor-covenant.org/ . Before submitting pull requests, ensure the following:
+
+Fork the repo and create your branch from develop. Test your code. 
+
+## Questions
+
+https://github.com/marycpriyanka
+
+For any addditional questions, reach me at marycpriyanka@gmail.com.
 
