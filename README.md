@@ -7,6 +7,7 @@ Weather dashboard retrieves weather data for cities. Travelers could use this we
 
 ## Table of Contents 
 
+- [Installation](#installation)
 - [Features](#features)
 - [Technologies used](#technologies-used)
 - [License](#license)
@@ -14,6 +15,13 @@ Weather dashboard retrieves weather data for cities. Travelers could use this we
 - [License](#license)
 - [How to Contribute](#how-to-contribute)
 - [Questions](#questions)
+
+## Installation
+
+This program can be run through a browser using the link to the deployed application. Alternatively, to run this application locally you will need to:
+
+- Clone this repository to receive all of the files.
+- Open the index.html file in your default browser.
 
 ## Features
 - Weather dashboard contains a form input for users to search for a city.
